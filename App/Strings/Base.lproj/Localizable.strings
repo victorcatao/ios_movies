@@ -1,0 +1,52 @@
+/* 
+  Strings.strings
+  Victor Catao
+
+  Created by Victor Catao on 3/29/18.
+  Copyright © 2018 Victor Catao. All rights reserved.
+*/
+
+
+// Error
+"unkown_error" = "Unknown error";
+"error_not_authorized" = "Not authorized";
+"session_error" = "Expired session";
+"try_again" = "Try again";
+"loading..." = "Loading...";
+"status_tableview_empty_message" = "No results found";
+"status_tableview_not_connected_message" = "Connection error";
+"status_tableview_error_message" = "Something went wrong!";
+"error_parse_json" = "Error to parse data.";
+
+// Login
+"login_session_error" = "Expired session. Login again.";
+
+// Modal
+"location_modal_message" = "For a better app experience, we need your location.";
+"location_error" = "We were unable to retrieve your location";
+
+// Home
+"top_rated" = "Top Rated";
+"see_all" = "See all →";
+
+// Movie Detail
+"app_name" = "Movies App";
+"popularity" = "Popularity";
+"vote" = "Vote";
+"details" = "Details";
+"reviews" = "Reviews";
+"similar" = "Similar";
+"about_movie" = "About the movie";
+"original_title" = "Original title";
+"tagline" = "Tagline";
+"budget" = "Budget";
+"genres" = "Genres";
+"homepage" = "Site";
+"production_companies" = "Companies";
+"production_countries" = "Countries";
+"release_date" = "Release";
+"spoken_languages" = "Languages";
+"revenue" = "Revenue";
+"informations" = "Informations";
+"movies" = "Movies";
+"message_to_share" = "Hmm, %@? Nice movie!\nThis is the Movies app from Victor Catão. Would you like to talk to me? :)\nhttps://victorcatao.com.br";

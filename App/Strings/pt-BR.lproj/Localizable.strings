@@ -1,0 +1,52 @@
+/* 
+  Strings.strings
+  Victor Catao
+
+  Created by Victor Catao on 3/29/18.
+  Copyright © 2018 Victor Catao. All rights reserved.
+*/
+
+
+// Error
+"unkown_error" = "Erro desconhecido";
+"error_not_authorized" = "Não autorizado";
+"session_error" = "Sessão expirada";
+"try_again" = "Tentar novamente";
+"loading..." = "Carregando...";
+"status_tableview_empty_message" = "Nenhum resultado encontrado";
+"status_tableview_not_connected_message" = "Sem conexão à internet";
+"status_tableview_error_message" = "Ocorreu algum erro!";
+"error_parse_json" = "Erro ao receber os dados.";
+
+// Login
+"login_session_error" = "Sua sessão expirou. Faça login novamente.";
+
+// Modal
+"location_modal_message" = "Para uma melhor experiência no app, precisamos da sua localização.";
+"location_error" = "Não foi possível recuperar a sua localização";
+
+// Home
+"top_rated" = "Melhores avaliados";
+"see_all" = "Ver tudo →";
+
+// Movie Detail
+"app_name" = "Movies App";
+"vote" = "Nota";
+"details" = "Detalhes";
+"reviews" = "Reviews";
+"similar" = "Relacionados";
+"about_movie" = "Sobre o filme";
+"original_title" = "Título original";
+"tagline" = "Tagline";
+"budget" = "Orçamento";
+"genres" = "Gêneros";
+"homepage" = "Site";
+"popularity" = "Popularidade";
+"production_companies" = "Empresas";
+"production_countries" = "Países";
+"release_date" = "Lançamento";
+"spoken_languages" = "Linguagens";
+"revenue" = "Receita";
+"informations" = "Informações";
+"movies" = "Filmes";
+"message_to_share" = "Hmm, %@? Ótimo filme!\nEsse é o app Movies do Victor Catão. Gostaria de falar comigo? :)\nhttps://victorcatao.com.br";
