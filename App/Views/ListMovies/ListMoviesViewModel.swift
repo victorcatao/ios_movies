@@ -22,6 +22,12 @@ final class ListMoviesViewModel {
         case header
     }
     
+    // MARK: - Init
+    init(title: String?, movies: [Movie]) {
+        self.title = title
+        self.movies = movies
+    }
+    
     // MARK: - Variables and Constants
     let bag = DisposeBag()
     let isLoading = BehaviorRelay<Bool>(value: false)

@@ -10,14 +10,13 @@ import UIKit
 
 final class ListMoviesViewController: UIViewController, ViewCodeProtocol {
     
-    convenience required init(title: String?, movies: [Movie]) {
+    convenience required init(viewModel: ListMoviesViewModel) {
         self.init()
-        self.viewModel.movies = movies
-        self.viewModel.title = title
+        self.viewModel = viewModel
     }
     
     // MARK: - Variables and Constants
-    private let viewModel = ListMoviesViewModel()
+    private var viewModel: ListMoviesViewModel!
     typealias CustomView = ListMoviesView
 
     // MARK: - Lifecycle
@@ -82,6 +81,6 @@ extension ListMoviesViewController: ListMoviesModelDelegate {
     }
     
     func openMovie(_ movie: Movie) {
-        self.navigationController?.pushViewController(MovieDetailViewController(movie: movie), animated: true)
+        self.navigationController?.pushViewController(MovieDetailViewController(viewModel: MovieDetailViewModel(movie: movie)), animated: true)
     }
 }

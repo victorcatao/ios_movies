@@ -11,9 +11,9 @@ import UIKit
 final class MovieDetailViewController: UIViewController, ViewCodeProtocol {
     
     // MARK: - Init
-    convenience required init(movie: Movie) {
+    convenience required init(viewModel: MovieDetailViewModel) {
         self.init()
-        self.viewModel = MovieDetailViewModel(movie: movie)
+        self.viewModel = viewModel
     }
     
     // MARK: - Variables and Constants

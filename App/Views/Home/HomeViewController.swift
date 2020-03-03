@@ -10,8 +10,14 @@ import UIKit
 
 final class HomeViewController: UIViewController, ViewCodeProtocol {
     
+    // MARK: - Init
+    convenience required init(viewModel: HomeViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     // MARK: - Variables and Constants
-    private let viewModel = HomeViewModel()
+    private var viewModel: HomeViewModel!
     typealias CustomView = HomeView
     
     // MARK: - Lifecycle
@@ -20,6 +26,10 @@ final class HomeViewController: UIViewController, ViewCodeProtocol {
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
         view = customView
+        
+        if viewModel == nil {
+            viewModel = HomeViewModel()
+        }
     }
     
     override func viewDidLoad() {
@@ -86,11 +96,12 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     func openMovie(_ movie: Movie) {
-        self.navigationController?.pushViewController(MovieDetailViewController(movie: movie), animated: true)
+        self.navigationController?.pushViewController(MovieDetailViewController(viewModel: MovieDetailViewModel(movie: movie)), animated: true)
     }
     
     func openMovieList(title: String?, movies: [Movie]) {
-        self.navigationController?.pushViewController(ListMoviesViewController(title: title, movies: movies), animated: true)
+        let vm = ListMoviesViewModel(title: title, movies: movies)
+        self.navigationController?.pushViewController(ListMoviesViewController(viewModel: vm), animated: true)
     }
     
 }
