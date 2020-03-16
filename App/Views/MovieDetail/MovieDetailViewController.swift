@@ -11,13 +11,13 @@ import UIKit
 final class MovieDetailViewController: UIViewController, ViewCodeProtocol {
     
     // MARK: - Init
-    convenience required init(viewModel: MovieDetailViewModel) {
+    convenience required init(viewModel: MovieDetailViewModelType) {
         self.init()
         self.viewModel = viewModel
     }
     
     // MARK: - Variables and Constants
-    private var viewModel: MovieDetailViewModel!
+    private var viewModel: MovieDetailViewModelType!
     typealias CustomView = MovieDetailView
     
     // MARK: - Lifecycle

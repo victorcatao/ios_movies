@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ListMoviesViewController: UIViewController, ViewCodeProtocol {
     
-    convenience required init(viewModel: ListMoviesViewModel) {
+    convenience required init(viewModel: ListMoviesViewModelType) {
         self.init()
         self.viewModel = viewModel
     }
     
     // MARK: - Variables and Constants
-    private var viewModel: ListMoviesViewModel!
+    private var viewModel: ListMoviesViewModelType!
     typealias CustomView = ListMoviesView
+    private let bag = DisposeBag()
 
     // MARK: - Lifecycle
     override func loadView() {
@@ -46,7 +48,7 @@ final class ListMoviesViewController: UIViewController, ViewCodeProtocol {
     private func setupSubscribers() {
         viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in
             isLoading ? self?.showLoader() : self?.hideLoader()
-        }).disposed(by: self.viewModel.bag)
+        }).disposed(by: bag)
     }
 }
 

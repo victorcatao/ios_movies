@@ -17,7 +17,19 @@ protocol HomeViewModelDelegate: class {
     func showError(message: String)
 }
 
-final class HomeViewModel {
+protocol HomeViewModelType {
+    var titleController: String { get }
+    var delegate: HomeViewModelDelegate? { get set }
+    var isLoading: BehaviorRelay<Bool> { get }
+    
+    func registerCells(tableView: UITableView)
+    func getNumberOfRows() -> Int
+    func getHeight(row: Int) -> CGFloat
+    func getCell(tableView: UITableView, row: Int) -> UITableViewCell
+    func downloadData()
+}
+
+final class HomeViewModel: HomeViewModelType {
     
     // MARK: - Enums
     private enum HomeCells: String {

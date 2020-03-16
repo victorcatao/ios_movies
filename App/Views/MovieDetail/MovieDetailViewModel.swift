@@ -14,7 +14,20 @@ protocol MovieDetailViewModelDelegate: class {
     func showError(message: String)
 }
 
-final class MovieDetailViewModel {
+protocol MovieDetailViewModelType {
+    var delegate: MovieDetailViewModelDelegate? { get set }
+    var messageToShare: String { get }
+    
+    func registerCells(tableView: UITableView)
+    func getNumberOfRows(section: Int) -> Int
+    func getNumberOfSections() -> Int
+    func getHeightForCell(section: Int, row: Int) -> CGFloat
+    func getCell(tableView: UITableView, section: Int, row: Int) -> UITableViewCell
+    func getHeightForHeader(section: Int) -> CGFloat
+    func getHeaderView(tableView: UITableView, section: Int) -> UIView?
+}
+
+final class MovieDetailViewModel: MovieDetailViewModelType {
     
     // MARK: - Init
     init(movie: Movie) {

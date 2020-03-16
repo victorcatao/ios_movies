@@ -16,7 +16,18 @@ protocol ListMoviesModelDelegate: class {
     func showError(message: String)
 }
 
-final class ListMoviesViewModel {
+protocol ListMoviesViewModelType {
+    var isLoading: BehaviorRelay<Bool> { get }
+    var controllerTitle: String { get }
+    
+    func registerCells(tableView: UITableView)
+    func getRowHeight() -> CGFloat
+    func getNumberOfRows() -> Int
+    func getCell(tableView: UITableView, row: Int) -> UITableViewCell
+    func didSelect(row: Int)
+}
+
+final class ListMoviesViewModel: ListMoviesViewModelType {
     
     enum ListMoviesCells: String {
         case header
@@ -29,9 +40,9 @@ final class ListMoviesViewModel {
     }
     
     // MARK: - Variables and Constants
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
+    private var movies: [Movie] = []
     let isLoading = BehaviorRelay<Bool>(value: false)
-    var movies: [Movie] = []
     var title: String?
     var controllerTitle: String {
         return title == nil ? "movies".localized : title!
@@ -54,7 +65,7 @@ final class ListMoviesViewModel {
     
 }
 
-// MARK: -
+// MARK: - TableView
 extension ListMoviesViewModel {
     func registerCells(tableView: UITableView) {
         tableView.register(MovieHeaderTableViewCell.self, forCellReuseIdentifier: ListMoviesCells.header.rawValue)

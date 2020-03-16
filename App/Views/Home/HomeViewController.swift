@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HomeViewController: UIViewController, ViewCodeProtocol {
     
     // MARK: - Init
-    convenience required init(viewModel: HomeViewModel) {
+    convenience required init(viewModel: HomeViewModelType) {
         self.init()
         self.viewModel = viewModel
     }
     
     // MARK: - Variables and Constants
-    private var viewModel: HomeViewModel!
+    private var viewModel: HomeViewModelType!
     typealias CustomView = HomeView
+    let bag = DisposeBag()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -64,7 +66,7 @@ final class HomeViewController: UIViewController, ViewCodeProtocol {
             } else {
                 self?.hideLoader()
             }
-        }).disposed(by: self.viewModel.bag)
+        }).disposed(by: bag)
     }
 }
 
