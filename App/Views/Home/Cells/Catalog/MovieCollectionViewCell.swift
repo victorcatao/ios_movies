@@ -10,6 +10,11 @@ import UIKit
 
 final class MovieCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Layout Settings
+    enum Layout {
+        static let posterImageViewHeightMultiply: CGFloat = 0.7
+    }
+    
     // MARK: - Variables and Constants
     lazy var posterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -21,7 +26,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.font = .smallMedium
         return label
     }()
     
@@ -29,7 +34,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 1
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = .xsmall
         return label
     }()
     
@@ -44,7 +49,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setups
-    private func setupView(){
+    private func setupView() {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = .vertical
         stackView.spacing = 0
@@ -52,16 +57,16 @@ final class MovieCollectionViewCell: UICollectionViewCell {
         stackView.addArrangedSubview(posterImageView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subTitleLabel)
-        stackView.setCustomSpacing(8, after: posterImageView)
+        stackView.setCustomSpacing(CGFloat(AppSettings.Layout.defaultSpacing), after: posterImageView)
         
         stackView.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(8)
-            make.trailing.equalToSuperview().offset(-8)
+            make.leading.equalToSuperview().offset(AppSettings.Layout.defaultSpacing)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.defaultSpacing)
         }
         
         posterImageView.snp.makeConstraints { (make) in
-            make.height.equalTo(self.contentView.snp.height).multipliedBy(0.7)
+            make.height.equalTo(self.contentView.snp.height).multipliedBy(Layout.posterImageViewHeightMultiply)
         }
     }
     

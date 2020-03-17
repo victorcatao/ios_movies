@@ -36,6 +36,13 @@ final class HomeViewModel: HomeViewModelType {
         case banner
         case catalog
     }
+
+    // MARK: - Layout settings
+    enum Layout {
+        static let bannerCellHeight: CGFloat = 220
+        static let indexBannerCell = 0
+        static let indexTopRatedCell = 1
+    }
     
     // MARK: - Variables and Constants
     let bag = DisposeBag()
@@ -49,11 +56,6 @@ final class HomeViewModel: HomeViewModelType {
     var didLoad: Bool {
         return genres.count > 0
     }
-    
-    // MARK: - Layout settings
-    private let bannerCellHeight: CGFloat = 220
-    private let indexBannerCell = 0
-    private let indexTopRatedCell = 1
     
 }
 
@@ -71,12 +73,12 @@ extension HomeViewModel {
     }
     
     func getHeight(row: Int) -> CGFloat {
-        if row == indexBannerCell { return bannerCellHeight }
+        if row == Layout.indexBannerCell { return Layout.bannerCellHeight }
         return UITableView.automaticDimension
     }
     
     func getCell(tableView: UITableView, row: Int) -> UITableViewCell {
-        if row == indexBannerCell { // banner = popular movies
+        if row == Layout.indexBannerCell { // banner = popular movies
             let bannerCell = tableView.dequeueReusableCell(withIdentifier: HomeCells.banner.rawValue) as! BannerTableViewCell
             bannerCell.setup(movies: popular)
             
@@ -88,7 +90,7 @@ extension HomeViewModel {
         catalogCell.selectionStyle = .none
         catalogCell.delegate = self
         
-        if row == indexTopRatedCell { // top rated movies
+        if row == Layout.indexTopRatedCell { // top rated movies
             catalogCell.setup(title: "top_rated".localized, movies: topRated)
         } else {
             let currentGenre = genres[row-2]

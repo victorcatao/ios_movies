@@ -10,18 +10,23 @@ import UIKit
 
 final class InformationTableViewCell: UITableViewCell {
     
+    // MARK: - Layout Settings
+    enum Layout {
+        static let typeLabelWidth: CGFloat = 100
+    }
+    
     // MARK: - Variables and Constants
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .xbigSemibold
         return label
     }()
     
     private lazy var informationsStackView: UIStackView = {
         let v = UIStackView()
         v.axis = .vertical
-        v.spacing = CGFloat(AppSettings.defaultSpacing)
+        v.spacing = CGFloat(AppSettings.Layout.defaultSpacing)
         return v
     }()
     
@@ -43,14 +48,14 @@ final class InformationTableViewCell: UITableViewCell {
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.leading.equalToSuperview().offset(AppSettings.mediumSpacing)
+            make.top.leading.equalToSuperview().offset(AppSettings.Layout.mediumSpacing)
         }
         
         contentView.addSubview(informationsStackView)
         informationsStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel.snp_bottom).offset(AppSettings.defaultSpacing)
-            make.leading.equalToSuperview().offset(AppSettings.mediumSpacing)
-            make.bottom.trailing.equalToSuperview().offset(-AppSettings.mediumSpacing)
+            make.top.equalTo(titleLabel.snp_bottom).offset(AppSettings.Layout.defaultSpacing)
+            make.leading.equalToSuperview().offset(AppSettings.Layout.mediumSpacing)
+            make.bottom.trailing.equalToSuperview().offset(-AppSettings.Layout.mediumSpacing)
         }
     }
     
@@ -64,7 +69,7 @@ final class InformationTableViewCell: UITableViewCell {
         for (type, information) in informations {
             let stackView = UIStackView()
             stackView.axis = .horizontal
-            stackView.spacing = CGFloat(AppSettings.defaultSpacing)
+            stackView.spacing = CGFloat(AppSettings.Layout.defaultSpacing)
             stackView.alignment = .top
             
             let typeLabel = getTypeLabel(text: type)
@@ -83,9 +88,9 @@ final class InformationTableViewCell: UITableViewCell {
         label.text = text
         label.isHidden = text == nil
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 16)
+        label.font = .medium
         label.snp.makeConstraints { (make) in
-            make.width.equalTo(100)
+            make.width.equalTo(Layout.typeLabelWidth)
         }
         return label
     }
@@ -94,7 +99,7 @@ final class InformationTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = text
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 14)
+        label.font = .normal
         label.numberOfLines = 0
         label.textColor = UIColor.appColor(.subtitleTextColor)
         return label

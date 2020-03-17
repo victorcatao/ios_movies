@@ -49,22 +49,22 @@ final class ReviewTableViewCell: UITableViewCell {
         contentView.addSubview(commentLabel)
         
         authorNameLabel.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().offset(AppSettings.mediumSpacing)
-            make.top.equalToSuperview().offset(AppSettings.bigSpacing)
-            make.trailing.equalToSuperview().offset(-AppSettings.mediumSpacing)
+            make.leading.equalToSuperview().offset(AppSettings.Layout.mediumSpacing)
+            make.top.equalToSuperview().offset(AppSettings.Layout.bigSpacing)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.mediumSpacing)
         }
         
         cosmosView.snp.makeConstraints { (make) in
             make.leading.equalTo(authorNameLabel.snp.leading)
-            make.top.equalTo(authorNameLabel.snp.bottom).offset(AppSettings.defaultSpacing)
+            make.top.equalTo(authorNameLabel.snp.bottom).offset(AppSettings.Layout.defaultSpacing)
             make.width.equalTo(40)
             make.height.equalTo(20)
         }
         
         commentLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(authorNameLabel.snp.leading)
-            make.top.equalTo(cosmosView.snp.bottom).offset(AppSettings.mediumSpacing)
-            make.trailing.equalToSuperview().offset(-AppSettings.mediumSpacing)
+            make.top.equalTo(cosmosView.snp.bottom).offset(AppSettings.Layout.mediumSpacing)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.mediumSpacing)
             make.bottom.equalToSuperview()
         }
     }

@@ -11,6 +11,15 @@ import Cosmos
 
 final class MovieHeaderTableViewCell: UITableViewCell {
     
+    // MARK: - Layout Settings
+    enum Layout {
+        static let moviePosterHeight: CGFloat = 120
+        static let moviePosterWidth: CGFloat = 80
+        static let arrowSize: CGFloat = 20
+        static let starSize: Double = 15
+        static let starMargin: Double = 0
+    }
+    
     // MARK: - Variables and Constants
     private lazy var moviePosterImageView: UIImageView = {
         let v = UIImageView()
@@ -23,39 +32,39 @@ final class MovieHeaderTableViewCell: UITableViewCell {
         let v = UILabel()
         v.textColor = UIColor.appColor(.textColor)
         v.numberOfLines = 0
-        v.font = .systemFont(ofSize: 18, weight: .bold)
+        v.font = .bigBold
         return v
     }()
     
     private lazy var taglineLabel: UILabel = {
         let v = UILabel()
         v.textColor = UIColor.appColor(.subtitleTextColor)
-        v.font = .systemFont(ofSize: 15)
+        v.font = .medium
         return v
     }()
     
     private lazy var popularityLabel: UILabel = {
         let v = UILabel()
         v.textColor = UIColor.appColor(.subtitleTextColor)
-        v.font = .systemFont(ofSize: 13)
+        v.font = .normal
         return v
     }()
     
     private lazy var voteAverageLabel: UILabel = {
         let v = UILabel()
         v.textColor = UIColor.appColor(.subtitleTextColor)
-        v.font = .systemFont(ofSize: 13)
+        v.font = .normal
         return v
     }()
     
     lazy var starsView: CosmosView = {
         let v = CosmosView()
         v.settings.fillMode = .half
-        v.settings.starSize = 15
+        v.settings.starSize = Layout.starSize
         v.settings.filledColor = .yellow
         v.settings.filledBorderColor = .yellow
         v.settings.emptyBorderColor = .yellow
-        v.settings.starMargin = 0
+        v.settings.starMargin = Layout.starMargin
         v.isUserInteractionEnabled = false
         return v
     }()
@@ -84,32 +93,32 @@ final class MovieHeaderTableViewCell: UITableViewCell {
         
         contentView.addSubview(moviePosterImageView)
         moviePosterImageView.snp.makeConstraints { (make) in
-            make.top.leading.equalToSuperview().offset(AppSettings.defaultSpacing)
-            make.height.equalTo(120)
-            make.width.equalTo(80)
-            make.bottom.equalToSuperview().offset(-AppSettings.defaultSpacing)
+            make.top.leading.equalToSuperview().offset(AppSettings.Layout.defaultSpacing)
+            make.height.equalTo(Layout.moviePosterHeight)
+            make.width.equalTo(Layout.moviePosterWidth)
+            make.bottom.equalToSuperview().offset(-AppSettings.Layout.defaultSpacing)
         }
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, taglineLabel, popularityLabel, voteAverageLabel, starsView])
         stackView.axis = .vertical
-        stackView.spacing = CGFloat(AppSettings.defaultSpacing/2)
+        stackView.spacing = CGFloat(AppSettings.Layout.smallSpacing)
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { (make) in
-            make.leading.equalTo(moviePosterImageView.snp_trailing).offset(AppSettings.defaultSpacing)
-            make.trailing.equalToSuperview().offset(-AppSettings.defaultSpacing)
-            make.top.equalToSuperview().offset(AppSettings.defaultSpacing)
+            make.leading.equalTo(moviePosterImageView.snp_trailing).offset(AppSettings.Layout.defaultSpacing)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.defaultSpacing)
+            make.top.equalToSuperview().offset(AppSettings.Layout.defaultSpacing)
             make.bottom.lessThanOrEqualToSuperview()
         }
         
         contentView.addSubview(arrowNextImageView)
         arrowNextImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-AppSettings.defaultSpacing)
-            make.width.height.equalTo(20)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.defaultSpacing)
+            make.width.height.equalTo(Layout.arrowSize)
         }
         
     }
-
+    
     func setup(movie: Movie, hideArrowNext: Bool = true) {
         moviePosterImageView.setImage(movieDBPathURL: movie.poster_path)
         titleLabel.text = movie.title

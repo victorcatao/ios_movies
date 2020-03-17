@@ -15,6 +15,12 @@ protocol CatalogTableViewCellDelegate: class {
 
 final class CatalogTableViewCell: UITableViewCell {
     
+    // MARK: - Layout Settings
+    enum Layout {
+        static let seeAllButtonHeight: CGFloat = 30
+        static let collectionViewHeight: CGFloat = 180
+    }
+    
     // MARK: - Enum
     private enum CatalogCells: String {
         case movie
@@ -30,14 +36,14 @@ final class CatalogTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .xbigSemibold
         return label
     }()
     
     lazy var seeAllButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("see_all".localized, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .semibold)
+        button.titleLabel?.font = .smallSemibold
         button.setTitleColor(UIColor.appColor(.textColor), for: .normal)
         button.addTarget(self, action: #selector(didTapSeeAll), for: .touchUpInside)
         return button
@@ -73,20 +79,20 @@ final class CatalogTableViewCell: UITableViewCell {
         
         // Constraints
         titleLabel.snp.makeConstraints { (make) in
-            make.top.leading.equalToSuperview().offset(AppSettings.mediumSpacing)
+            make.top.leading.equalToSuperview().offset(AppSettings.Layout.mediumSpacing)
         }
         
         seeAllButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(titleLabel.snp.centerY)
-            make.trailing.equalToSuperview().offset(-AppSettings.mediumSpacing)
-            make.height.equalTo(30)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.mediumSpacing)
+            make.height.equalTo(Layout.seeAllButtonHeight)
         }
         
         collectionView.snp.makeConstraints { (make) in
             make.trailing.leading.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-AppSettings.defaultSpacing)
-            make.top.equalTo(self.titleLabel.snp.baseline).offset(AppSettings.defaultSpacing)
-            make.height.equalTo(180)
+            make.bottom.equalToSuperview().offset(-AppSettings.Layout.defaultSpacing)
+            make.top.equalTo(self.titleLabel.snp.baseline).offset(AppSettings.Layout.defaultSpacing)
+            make.height.equalTo(Layout.collectionViewHeight)
         }
     }
     

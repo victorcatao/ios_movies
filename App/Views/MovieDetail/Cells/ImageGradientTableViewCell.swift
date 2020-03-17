@@ -10,6 +10,12 @@ import UIKit
 
 final class ImageGradientTableViewCell: UITableViewCell {
     
+    // MARK: - Layout Settings
+    enum Layout {
+        static let gradientViewHeightMultiply: CGFloat = 0.4
+    }
+    
+    // MARK: - Views
     private lazy var moviePosterImageView: UIImageView = {
         let v = UIImageView()
         v.contentMode = .scaleAspectFill
@@ -47,7 +53,7 @@ final class ImageGradientTableViewCell: UITableViewCell {
         
         gradientView.snp.makeConstraints { (make) in
             make.bottom.leading.trailing.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.4)
+            make.height.equalToSuperview().multipliedBy(Layout.gradientViewHeightMultiply)
         }
     }
     

@@ -192,8 +192,8 @@ extension MovieDetailViewModel {
         
         segmentedControl.snp.makeConstraints { (make) in
             make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(AppSettings.mediumSpacing)
-            make.trailing.equalToSuperview().offset(-AppSettings.mediumSpacing)
+            make.leading.equalToSuperview().offset(AppSettings.Layout.mediumSpacing)
+            make.trailing.equalToSuperview().offset(-AppSettings.Layout.mediumSpacing)
         }
         
         return v
