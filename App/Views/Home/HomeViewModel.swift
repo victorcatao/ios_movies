@@ -157,8 +157,10 @@ extension HomeViewModel {
     }
     
     private func downloadMovieDetail(_ movie: Movie) {
-        MoviesRequest.getMovieDetail(movieId: movie.id ?? 0).observeOn(MainScheduler.instance).subscribe(
-            onNext: { [weak self] movieDetial in
+        MoviesRequest
+            .getMovieDetail(movieId: movie.id ?? 0)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] movieDetial in
                 self?.isLoading.accept(false)
                 self?.delegate?.openMovie(movieDetial)
             },

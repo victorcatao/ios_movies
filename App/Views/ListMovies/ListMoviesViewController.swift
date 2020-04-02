@@ -19,7 +19,7 @@ final class ListMoviesViewController: UIViewController, ViewCodeProtocol {
     // MARK: - Variables and Constants
     private var viewModel: ListMoviesViewModelType!
     typealias CustomView = ListMoviesView
-    private let bag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
     override func loadView() {
@@ -46,9 +46,13 @@ final class ListMoviesViewController: UIViewController, ViewCodeProtocol {
     }
     
     private func setupSubscribers() {
-        viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in
-            isLoading ? self?.showLoader() : self?.hideLoader()
-        }).disposed(by: bag)
+        viewModel
+            .isLoading
+            .asDriver()
+            .drive(onNext: { [weak self] (isLoading) in
+                isLoading ? self?.showLoader() : self?.hideLoader()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

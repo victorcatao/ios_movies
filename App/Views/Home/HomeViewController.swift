@@ -20,7 +20,7 @@ final class HomeViewController: UIViewController, ViewCodeProtocol {
     // MARK: - Variables and Constants
     private var viewModel: HomeViewModelType!
     typealias CustomView = HomeView
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -60,13 +60,11 @@ final class HomeViewController: UIViewController, ViewCodeProtocol {
     }
     
     private func setupSubscribers() {
-        viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in
-            if isLoading {
-                self?.showLoader()
-            } else {
-                self?.hideLoader()
-            }
-        }).disposed(by: bag)
+        viewModel.isLoading
+            .asDriver()
+            .drive(onNext: { (isLoading) in
+                isLoading ? self.showLoader() : self.hideLoader()
+            }).disposed(by: bag)
     }
 }
 
